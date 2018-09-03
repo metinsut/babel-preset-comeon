@@ -3,7 +3,7 @@ module.exports = {
 		[
 			require('babel-preset-env'),
 			{
-				modules: false,
+				modules: process.env.NODE_ENV === 'test' ? 'commonjs' : false, // Jest makes me do this
 				useBuiltIns: true,
 				loose: true
 			}

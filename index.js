@@ -1,4 +1,4 @@
-module.exports = (api, opts) => ({
+module.exports = (api, options = {}) => ({
 	presets: [
 		[
 			require('@babel/preset-env'),
@@ -10,7 +10,7 @@ module.exports = (api, opts) => ({
 				targets: {
 					browsers: ['>= 1%']
 				},
-				...opts
+				...options
 			}
 		],
 		require('@babel/preset-react')

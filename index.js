@@ -1,22 +1,24 @@
-module.exports = {
+module.exports = (api, options = {}) => ({
 	presets: [
 		[
-			require('babel-preset-env'),
+			require('@babel/preset-env'),
 			{
-				modules: process.env.NODE_ENV === 'test' ? 'commonjs' : false, // Jest makes me do this
-				useBuiltIns: true,
-				loose: true
+				modules: api.env('test') ? 'commonjs' : false,
+				useBuiltIns: 'usage',
+				spec: true,
+				debug: true,
+				targets: {
+					browsers: ['>= 1%']
+				},
+				...options
 			}
 		],
-		require('babel-preset-react')
+		require('@babel/preset-react')
 	],
 	plugins: [
-		require('babel-plugin-syntax-async-functions'),
-		require('babel-plugin-transform-regenerator'),
-		require('babel-plugin-syntax-dynamic-import'),
-		require('babel-plugin-transform-object-rest-spread'),
-		require('babel-plugin-external-helpers'),
-		require('babel-plugin-transform-regenerator'),
-		[require('babel-plugin-transform-class-properties'), { spec: true }]
+		require('@babel/plugin-proposal-class-properties'),
+		require('@babel/plugin-proposal-json-strings'),
+		require('@babel/plugin-syntax-dynamic-import'),
+		require('@babel/plugin-syntax-import-meta')
 	]
-};
+});

@@ -1,4 +1,4 @@
-module.exports = (api, {env={}, ...options}) => {
+module.exports = (api, options = {env: {}, presets: [], plugins: []}) => {
 	return {
 		presets: [
 			[
@@ -9,19 +9,21 @@ module.exports = (api, {env={}, ...options}) => {
 					spec: true,
 					debug: true,
 					shippedProposals: true,
-					...env
+					...options.env
 				}
 			],
 			require('@babel/preset-react'),
-			api.env('production') && require('babel-preset-minify')
+			api.env('production') && require('babel-preset-minify'),
+			...options.presets
 		].filter(Boolean),
 		plugins: [
 			require('@babel/plugin-proposal-class-properties'),
 			require('@babel/plugin-proposal-json-strings'),
 			require('@babel/plugin-syntax-dynamic-import'),
 			require('@babel/plugin-syntax-import-meta'),
-			(api.env('test') || options.targets.node) && require('babel-plugin-dynamic-import-node')
-		].filter(Boolean),
-		...options
+			require('react-hot-loader/babel'),
+			(api.env('test') || options.env.targets.node) && require('babel-plugin-dynamic-import-node'),
+			...options.plugins
+		].filter(Boolean)
 	}
 };

@@ -1,19 +1,17 @@
-module.exports = (api, options = {env: {}, presets: [], plugins: []}) => {
+module.exports = (api, options) => {
 	return {
 		presets: [
 			[
 				require('@babel/preset-env'),
 				{
 					modules: api.env('test') ? 'commonjs' : false,
-					useBuiltIns: 'usage',
+					useBuiltIns: options.useBuiltIns || 'usage',
 					spec: true,
-					debug: true,
-					shippedProposals: true,
-					...options.env
+					debug: options.debug || true,
+					shippedProposals: true
 				}
 			],
-			require('@babel/preset-react'),
-			...options.presets
+			require('@babel/preset-react')
 		].filter(Boolean),
 		plugins: [
 			require('@babel/plugin-proposal-class-properties'),
@@ -21,8 +19,7 @@ module.exports = (api, options = {env: {}, presets: [], plugins: []}) => {
 			require('@babel/plugin-syntax-dynamic-import'),
 			require('@babel/plugin-syntax-import-meta'),
 			require('react-hot-loader/babel'),
-			(api.env('test') || options.env.targets.node) && require('babel-plugin-dynamic-import-node'),
-			...options.plugins
+			(api.env('test') || options.node) && require('babel-plugin-dynamic-import-node')
 		].filter(Boolean)
 	}
 };

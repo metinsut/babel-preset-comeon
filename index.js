@@ -13,7 +13,6 @@ module.exports = (api, options = {env: {}, presets: [], plugins: []}) => {
 				}
 			],
 			require('@babel/preset-react'),
-			api.env('production') && require('babel-preset-minify'),
 			...options.presets
 		].filter(Boolean),
 		plugins: [

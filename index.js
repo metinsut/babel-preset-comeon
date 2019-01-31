@@ -1,6 +1,6 @@
 module.exports = (api, options) => {
 
-	const {debug = true, shippedProposals = true, useBuiltIns = 'usage', spec = true} = options;
+	const {debug = false, shippedProposals = true, useBuiltIns = 'entry', spec = true} = options;
 	
 	return {
 		presets: [
@@ -14,7 +14,8 @@ module.exports = (api, options) => {
 					shippedProposals
 				}
 			],
-			require('@babel/preset-react')
+			require('@babel/preset-react'),
+			require('@babel/preset-typescript')
 		].filter(Boolean),
 		plugins: [
 			require('@babel/plugin-proposal-class-properties'),
@@ -22,7 +23,7 @@ module.exports = (api, options) => {
 			require('@babel/plugin-syntax-dynamic-import'),
 			require('@babel/plugin-syntax-import-meta'),
 			require('react-hot-loader/babel'),
-			(api.env('test') || options.node) && require('babel-plugin-dynamic-import-node')
+			require('babel-plugin-dynamic-import-node')
 		].filter(Boolean)
 	}
 };

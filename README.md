@@ -17,3 +17,8 @@ I want to reuse my openionated babel setting most of the time.
   "presets": ["@comeon/comeon"]
 }
 ```
+
+# Development
+
+- `npm version <major | minor | patch >``
+- push with tags

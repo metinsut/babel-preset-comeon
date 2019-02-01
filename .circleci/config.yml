@@ -28,12 +28,14 @@ jobs:
       - persist_to_workspace:
           root: ~/workspace
           paths: .
+
   test:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/workspace
       - run: npm test
+
   publish:
     <<: *defaults
     steps:
@@ -41,7 +43,7 @@ jobs:
           at: ~/workspace
       - run: 
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/workspace/.npmrc
+          command: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
       - run:
           name: Publish package
           command: npm publish --access public

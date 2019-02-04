@@ -1,17 +1,17 @@
 module.exports = (api, options) => {
 
-	const {debug = false, shippedProposals = true, useBuiltIns = 'entry', spec = true} = options;
+	const {debug = false, modules = 'auto', shippedProposals = true, spec = true, useBuiltIns = 'entry'} = options;
 	
 	return {
 		presets: [
 			[
 				require('@babel/preset-env'),
 				{
-					modules: api.env('test') ? 'commonjs' : false,
-					useBuiltIns,
-					spec,
 					debug,
-					shippedProposals
+					modules,
+					shippedProposals,
+					spec,
+					useBuiltIns
 				}
 			],
 			require('@babel/preset-react'),

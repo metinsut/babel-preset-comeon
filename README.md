@@ -1,4 +1,7 @@
 # @comeon/babel-preset-comeon
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/comeon-stockholm/babel-preset-comeon.svg)](https://greenkeeper.io/)
+
 Opinionated Babel preset
 
 ## Why?

@@ -18,11 +18,12 @@ module.exports = (api, options) => {
 			require('@babel/preset-typescript')
 		].filter(Boolean),
 		plugins: [
+			require('babel-plugin-styled-components'),
+			require('@babel/plugin-transform-react-constant-elements'),
 			require('@babel/plugin-proposal-class-properties'),
 			require('@babel/plugin-proposal-json-strings'),
 			require('@babel/plugin-syntax-dynamic-import'),
 			require('@babel/plugin-syntax-import-meta'),
-			require('react-hot-loader/babel'),
 			require('babel-plugin-dynamic-import-node')
 		].filter(Boolean)
 	}

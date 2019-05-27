@@ -24,7 +24,7 @@ module.exports = (api, options) => {
 			require('@babel/plugin-proposal-json-strings'),
 			require('@babel/plugin-syntax-dynamic-import'),
 			require('@babel/plugin-syntax-import-meta'),
-			require('babel-plugin-dynamic-import-node')
+			api.env('test') && require('babel-plugin-dynamic-import-node')
 		].filter(Boolean)
 	}
 };

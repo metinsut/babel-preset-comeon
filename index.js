@@ -11,7 +11,11 @@ module.exports = (api, options) => {
 					modules,
 					shippedProposals,
 					spec,
-					useBuiltIns
+					useBuiltIns,
+					corejs: {
+						version: 3,
+						proposals: true
+					}
 				}
 			],
 			require('@babel/preset-react'),
